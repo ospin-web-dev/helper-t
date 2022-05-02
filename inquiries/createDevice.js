@@ -1,8 +1,12 @@
 import nexus from '@ospin/nexus'
 import inquirer from 'inquirer'
 import createDevice from '../requests/device/create.js'
-import getAndSaveCertificate from '../requests/requestAndSaveCerts.js'
+import requestAndSaveCerts from '../requests/requestAndSaveCerts.js'
 import FileSystemUtils from '../utils/FileSystemUtils.js'
+
+function sanitizeDevicename(name) {
+  return name.replace(/\s/g , "-")
+}
 
 function generatePromptsFromManufacturerList(data){
   return {
@@ -68,10 +72,10 @@ export default async function createNewDeviceFlow() {
       }
       for (let index = 0; index < numberOfDevices; index++) {
         const deviceData = await createDevice({
-          name: `${baseName}_${index}`,
+          name: `${baseName}-Port-${index + 1}`,
           manufacturerDeviceTypeId,
         })
-        await getAndSaveCertificate(deviceData.id)
+        await requestAndSaveCerts({deviceId: deviceData.id,deviceName: sanitizeDevicename(deviceData.name)})
       }
   })
 }))

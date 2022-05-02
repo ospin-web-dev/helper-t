@@ -5,7 +5,6 @@ export default async function createNewDevice(userInput) {
     ...userInput,
     isVirtual: false
   })
-
   console.log(`Device ${data.name} has been created`)
 
   if (!success) {

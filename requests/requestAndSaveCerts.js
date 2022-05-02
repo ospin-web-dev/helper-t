@@ -10,26 +10,26 @@ const FILE_NAMES ={
 }
 
 
-function generateClientIdJSONData(clientId) {
-  return JSON.stringify({clientId})
+function generateJSON(deviceId) {
+  return JSON.stringify({deviceId})
 }
 
 
-function saveCertsToFilesystem(deviceId, certs) {
-  const folder = `./out/${deviceId}`
+function saveCertsToFilesystem({deviceId,deviceName,data}) {
+  const folder = `./out/${deviceName}`
   fs.mkdirSync(folder, { recursive: true })
 
-  Object.entries(certs).map(([key,value]) => {
+  Object.entries(data).map(([key,value]) => {
     FileSystemUtils.writeToFile(`${folder}/${FILE_NAMES[key]}`,value)
   })
 
-  FileSystemUtils.writeToFile(`${folder}/clientId.json`,generateClientIdJSONData(deviceId))
+  FileSystemUtils.writeToFile(`${folder}/deviceId.json`,generateJSON(deviceId))
   FileSystemUtils.copyFile(AMAZON_ROOT_CA_LOCATION,`${folder}/AmazonRootCA1.crt`)
 }
 
 
-export default async function getAndSaveCertificate(deviceId){
+export default async function getAndSaveCertificate({deviceId,deviceName}){
   const data = await getCert(deviceId)
-  saveCertsToFilesystem(deviceId, data)
+  saveCertsToFilesystem({deviceId,deviceName,data})
 
 }
