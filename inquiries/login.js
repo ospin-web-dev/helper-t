@@ -54,7 +54,7 @@ export default function login() {
     process.exit(0)
   } else {
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-    console.log(`                   WELCOME BACK ${data.username}                                `)
+    console.log(`                   WELCOME BACK ${data.username.toUpperCase()}                                `)
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
     inquirer.registerPrompt('selectTask',selectTask())
   }
