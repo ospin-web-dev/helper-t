@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ospin/nexus": "^1.22.0",
+    "@ospin/nexus": "^1.25.0",
     "inquirer": "^8.2.2",
     "meow": "^10.1.2",
     "uuid": "^8.3.2"

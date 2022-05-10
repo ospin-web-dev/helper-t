@@ -1,5 +1,20 @@
-const clippy = `
-__\r\n\/  \\        _____________\r\n|  |       \/             \\\r\n@  @       | It looks    |\r\n|| ||      | like you    |\r\n|| ||   <--| trying to   |\r\n|\\_\/|      | create a    |\r\n|   |      | device      |\r\n\\___\/      \\_____________\/
-`
+function clippy(text) {
+  return`
+  /${'-'.repeat(text.length + 2)}\\\r\n\
+  |  ${text} |\r\n\
+  \\${'-'.repeat(text.length + 2)}/\r\n\
+  \\ \r\n\
+   \\ \r\n\
+      __
+     /  \\ \r\n\
+     |  | \r\n\
+     @  @ \r\n\
+     |  | \r\n\
+     || |/\ \r\n\
+     || || \r\n\
+     |\\_/| \r\n\
+     \\___/ \r\n\
+  `
+ }
 
-export default clippy
+ export default clippy

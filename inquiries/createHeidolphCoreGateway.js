@@ -1,4 +1,5 @@
 import nexus from '@ospin/nexus'
+import createHeidolphCoreGateway from '../requests/device/createHeidolphCoreGateway.js'
 import inquirer from 'inquirer'
 import createDevice from '../requests/device/create.js'
 import requestAndSaveCerts from '../requests/requestAndSaveCerts.js'
@@ -26,7 +27,7 @@ function generatePromptsFromModelList(data) {
   }
  }
 
-export default async function createNewDeviceFlow() {
+export default async function createNewHeidolphCoreGateway() {
 
   const { success,errorMsg,data } = await nexus.device.manufacturer.list()
   if (!success) {
@@ -36,18 +37,18 @@ export default async function createNewDeviceFlow() {
   return (inquirer
   .prompt([
     {
-      name: 'name',
-      message: 'What would you like the devices to be called',
+      name: 'baseName',
+      message: 'What would you like the devices to be called, the final device name  will be {basename}_{index}',
       validate: function(input) {
-        if (!input && input.length <= 53) {
-          throw new Error('Invalid Device Name, please enter a name with less than 53 characters')
+        if (!input && input.length <= 52) {
+          throw new Error('Invalid Device Name, please enter a name with less than 52 characters')
         }
         return true
       }
     },
     generatePromptsFromManufacturerList(data)
 
-]).then(async ({numberOfDevices,name,manufacturerId}) =>{
+]).then(async ({baseName,manufacturerId}) =>{
   const { success,errorMsg,data } = await nexus
   .device.manufacturer.deviceType.list({ manufacturerId })
   if (!success) {
@@ -59,12 +60,13 @@ export default async function createNewDeviceFlow() {
         console.log('OutFolder still contains files,remove these and restart')
         process.exit(0)
       }
-      const deviceData = await createDevice({
-        name,
-        manufacturerDeviceTypeId,
+      const devices = await createHeidolphCoreGateway({
+        baseName,
+        manufacturerDeviceTypeId
       })
-      await requestAndSaveCerts({deviceId: deviceData.id,deviceName: sanitizeDevicename(deviceData.name)})
-
+      devices.map(async device => {
+        await requestAndSaveCerts({deviceId: device.id,deviceName: sanitizeDevicename(device.name)})
+      })
   })
 }))
 }
