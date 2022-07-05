@@ -1,5 +1,5 @@
 function clippy(text) {
-  return`
+  return `
   /${'-'.repeat(text.length + 2)}\\\r\n\
   |  ${text} |\r\n\
   \\${'-'.repeat(text.length + 2)}/\r\n\
@@ -14,7 +14,7 @@ function clippy(text) {
      || || \r\n\
      |\\_/| \r\n\
      \\___/ \r\n\
-  `
- }
+  `;
+}
 
- export default clippy
+module.exports = clippy

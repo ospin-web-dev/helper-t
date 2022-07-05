@@ -1,18 +1,25 @@
 {
-  "name": "device_generator",
+  "name": "helper-t",
   "version": "1.0.0",
-  "description": "costum script to generate devices",
-  "type": "module",
+  "description": "Ospin Support CLI Tool",
   "main": "index.js",
   "scripts": {
+    "start": "node -r esm ./src/cli.js",
+    "postinstall": "node src/utils/PostInstallScript.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ospin/nexus": "^1.25.0",
+    "@ospin/nexus": "^2.4.0",
+    "esm": "^3.2.25",
     "inquirer": "^8.2.2",
     "meow": "^10.1.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
