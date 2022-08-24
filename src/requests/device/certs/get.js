@@ -1,6 +1,6 @@
-import nexus from '@ospin/nexus';
+const nexus = require('@ospin/nexus')
 
-export default async function getCert(deviceId) {
+async function getCert(deviceId) {
   const {
     success, data, status, errorMsg,
   } = await nexus.device.certificate.get(deviceId);
@@ -11,3 +11,5 @@ export default async function getCert(deviceId) {
 
   return data;
 }
+
+module.exports = getCert
