@@ -2,7 +2,7 @@ const fs = require('fs')
 const FileSystemUtils = require('../utils/FileSystemUtils')
 const getCert = require('./device/certs/get')
 
-const AMAZON_ROOT_CA_LOCATION = './certs/AmazonRootCA1.pem';
+const AMAZON_ROOT_CA_LOCATION = './amazonRootCA/AmazonRootCA1.pem';
 
 const FILE_NAMES = {
   certificatePem: 'deviceCertificate.crt',
