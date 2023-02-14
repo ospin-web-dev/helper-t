@@ -1,4 +1,4 @@
-## DEPRECATED, Functions will be rolled into the new Support Wizarr
+## DEPRECATED, Functions will be rolled into the new Support Wizard
 
 
 ## OSPIN CLI TOOL
