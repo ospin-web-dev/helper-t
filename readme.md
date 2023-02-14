@@ -1,3 +1,6 @@
+## DEPRECATED, Functions will be rolled into the new Support Wizarr
+
+
 ## OSPIN CLI TOOL
 
 Do you dislike the browser ? Do you wish for all commands to be done via a convinient terminal interface ? Is your mouse broken ?
